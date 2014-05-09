@@ -1,4 +1,11 @@
 ================================================================================                            
+                              About this repository
+================================================================================
+This repository is not the official repository of the Cargo Tracker project.
+It is intended to store my own changes and upgrades.
+See below to have more information on the project.
+
+================================================================================                            
                               Cargo Tracker
              Applied Domain-Driven Design BluePrints for Java EE
 ================================================================================
