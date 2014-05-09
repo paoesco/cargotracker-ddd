@@ -5,10 +5,6 @@
     <ui:composition template="/WEB-INF/templates/common/admin.xhtml">
         <ui:define name="title">Cargo Administration</ui:define>
         <ui:define name="content">
-            <f:metadata>
-                <f:viewParam name="trackingId" value="#{cargoDetails.trackingId}" />
-                <f:viewAction action="#{cargoDetails.load}" />
-            </f:metadata>
             <div class="row">
                 <div class="large-12 columns">
                     <div id="container" class="panel">

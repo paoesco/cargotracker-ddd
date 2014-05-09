@@ -1,10 +1,12 @@
 package net.java.cargotracker.interfaces.booking.web;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import net.java.cargotracker.interfaces.booking.facade.BookingServiceFacade;
 import net.java.cargotracker.interfaces.booking.facade.dto.CargoRoute;
+import net.java.cargotracker.interfaces.web.util.RequestParameter;
 
 /**
  * Handles viewing cargo details. Operates against a dedicated service facade,
@@ -25,24 +27,20 @@ public class CargoDetails {
 
     // TODO Use this format for date rendering.
     private static final String FORMAT = "yyyy-MM-dd hh:mm";
+    @Inject
+    @RequestParameter
     private String trackingId;
     private CargoRoute cargo;
     @Inject
     private BookingServiceFacade bookingServiceFacade;
 
-    public String getTrackingId() {
-        return trackingId;
-    }
-
-    public void setTrackingId(String trackingId) {
-        this.trackingId = trackingId;
+    @PostConstruct
+    public void load() {
+        cargo = bookingServiceFacade.loadCargoForRouting(trackingId);
     }
 
     public CargoRoute getCargo() {
         return cargo;
     }
 
-    public void load() {
-        cargo = bookingServiceFacade.loadCargoForRouting(trackingId);
-    }
 }

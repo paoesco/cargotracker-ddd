@@ -2,12 +2,14 @@ package net.java.cargotracker.interfaces.booking.web;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import net.java.cargotracker.interfaces.booking.facade.BookingServiceFacade;
 import net.java.cargotracker.interfaces.booking.facade.dto.CargoRoute;
 import net.java.cargotracker.interfaces.booking.facade.dto.Location;
+import net.java.cargotracker.interfaces.web.util.RequestParameter;
 
 /**
  * Handles changing the cargo destination. Operates against a dedicated service
@@ -27,20 +29,14 @@ import net.java.cargotracker.interfaces.booking.facade.dto.Location;
 public class ChangeDestination implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Inject
+    @RequestParameter
     private String trackingId;
     private CargoRoute cargo;
     private List<Location> locations;
     private String destinationUnlocode;
     @Inject
     private BookingServiceFacade bookingServiceFacade;
-
-    public String getTrackingId() {
-        return trackingId;
-    }
-
-    public void setTrackingId(String trackingId) {
-        this.trackingId = trackingId;
-    }
 
     public CargoRoute getCargo() {
         return cargo;
@@ -58,6 +54,7 @@ public class ChangeDestination implements Serializable {
         this.destinationUnlocode = destinationUnlocode;
     }
 
+    @PostConstruct
     public void load() {
         locations = bookingServiceFacade.listShippingLocations();        
         cargo = bookingServiceFacade.loadCargoForRouting(trackingId);
