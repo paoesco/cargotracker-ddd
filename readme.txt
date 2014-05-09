@@ -3,6 +3,9 @@
 ================================================================================
 This repository is not the official repository of the Cargo Tracker project.
 It is intended to store my own changes and upgrades.
+Develop branch : my features
+Master branch : source from project repository
+
 See below to have more information on the project.
 
 ================================================================================                            
